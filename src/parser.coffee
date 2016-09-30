@@ -14,7 +14,6 @@ module.exports = class Parser
     @activeStates = [@parseTree] # stack tracking current parse tree position (starting with root)
     @chunkLine = 0 # The start line for the current @chunk.
     @chunkColumn =  0 # The start column of the current @chunk.
-    @cjsxPragmaChecked = false
     code = @clean code # The stripped, cleaned original source code.
 
     i = 0
@@ -63,16 +62,6 @@ module.exports = class Parser
   csComment: ->
     return 0 unless match = @chunk.match COMMENT
     [comment, here] = match
-
-    unless @cjsxPragmaChecked
-      @cjsxPragmaChecked = true
-      if pragmaMatch = comment.match PRAGMA
-        if pragmaMatch and pragmaMatch[1] and pragmaMatch[1].length
-          prefix = pragmaMatch[1]
-        else
-          prefix = 'React.DOM'
-        @addLeafNodeToActiveBranch ParseTreeLeafNode $.CJSX_PRAGMA, prefix
-        return comment.length
 
     @addLeafNodeToActiveBranch ParseTreeLeafNode $.CS_COMMENT, comment
     comment.length
@@ -421,8 +410,6 @@ TAG_ATTRIBUTES = ///
   | (?: \{\.\.\.(\s*?[^{}]+?\s*?)\} ) # spread attributes (captured)
   | ( [\s\n]+ ) # whitespace (captured)
 ///
-
-PRAGMA = /^\s*#\s*@cjsx\s+(\S*)/i
 
 CJSX_ESC_COMMENT = /^\{#(.*)\}/
 

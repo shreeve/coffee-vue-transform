@@ -12,19 +12,7 @@ module.exports = exports = serialise = (parseTree) ->
 
 class Serialiser
   serialise: (parseTree) ->
-    if parseTree.children and
-    parseTree.children.length and
-    parseTree.children[0].type is $.CJSX_PRAGMA
-      @domObject = parseTree.children[0].value
-    else
-      @domObject = 'React.DOM'
-
-    domObjectParts = @domObject.split('.')
-    if domObjectParts.length > 0 and domObjectParts[0] isnt ''
-      @reactObject = domObjectParts[0]
-    else
-      @reactObject = 'React'
-
+    @createElement = 'h' # NOTE: This should be configurable
     @serialiseNode(parseTree)
 
   serialiseNode: (node) ->
@@ -157,8 +145,6 @@ componentClassTagConvention = /(^[A-Z@]|\.)/
 nodeSerialisers =
   ROOT: genericBranchSerialiser
 
-  CJSX_PRAGMA: -> "`/** @jsx #{@domObject} */`"
-
   CJSX_EL: (node) ->
     serialisedChildren = []
     accumulatedWhitespace = ''
@@ -183,7 +169,7 @@ nodeSerialisers =
       element = node.value
     else
       element = '"'+node.value+'"'
-    "#{@reactObject}.createElement(#{element}, #{joinList(serialisedChildren)})"
+    "#{@createElement}(#{element}, #{joinList(serialisedChildren)})"
 
   CJSX_COMMENT: (node) ->
     ''
