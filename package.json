@@ -1,19 +1,22 @@
 {
-  "name": "coffee-react-transform",
-  "description": "React JSX support for Coffeescript",
+  "name": "coffee-vue-transform",
+  "description": "Vue JSX support for Coffeescript",
   "keywords": [
-    "coffeescript",
-    "react",
-    "jsx",
     "cjsx",
-    "coffee-react"
+    "coffee",
+    "coffee-script",
+    "coffee-vue",
+    "coffeescript",
+    "jsx",
+    "vue",
+    "vuejs"
   ],
-  "author": "James Friend",
-  "version": "4.0.0",
+  "author": "Steve Shreeve <steve.shreeve@gmail.com>",
+  "version": "0.0.1",
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://raw.github.com/jsdf/coffee-react-transform/master/LICENSE"
+      "url": "https://raw.github.com/shreeve/coffee-vue-transform/master/LICENSE"
     }
   ],
   "scripts": {
@@ -26,16 +29,16 @@
     "bin/"
   ],
   "bin": {
-    "cjsx-transform": "./bin/cjsx-transform"
+    "coffee-vue-transform": "./bin/coffee-vue-transform"
   },
-  "homepage": "https://github.com/jsdf/coffee-react-transform",
-  "bugs": "https://github.com/jsdf/coffee-react-transform/issues",
+  "homepage": "https://github.com/shreeve/coffee-vue-transform",
+  "bugs": "https://github.com/shreeve/coffee-vue-transform/issues",
   "repository": {
     "type": "git",
-    "url": "git://github.com/jsdf/coffee-react-transform.git"
+    "url": "git://github.com/shreeve/coffee-vue-transform.git"
   },
   "devDependencies": {
-    "coffee-script": "^1.9.1",
+    "coffee-script": "~1.11.0",
     "colors": "^0.6.2",
     "diff": "^1.0.8"
   }

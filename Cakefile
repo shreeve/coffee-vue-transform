@@ -38,7 +38,7 @@ compile = (srcFiles, srcDir, destDir, cb) ->
   coffee args, cb
 
 # Run CoffeeScript command
-coffee = (args, cb) -> run './node_modules/.bin/coffee', args, cb
+coffee = (args, cb) -> run 'coffee', args, cb
 
 run = (executable, args = [], cb) ->
   console.log(executable, args...)
@@ -50,7 +50,7 @@ run = (executable, args = [], cb) ->
 
 test = -> coffee ['test/test.coffee']
 
-task 'build', 'build cjsx transformer from source', build
+task 'build', 'build coffee-vue-transform from source', build
 
 task 'test', 'run tests', -> build test
 
