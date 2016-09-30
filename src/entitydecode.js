@@ -269,7 +269,7 @@ module.exports = function decode(str) {
       var entity = XHTMLEntities[e]
         || (e.match(/;$/) && XHTMLEntities[ee])
       ;
-      
+
       if (entity) {
         return entity;
       }

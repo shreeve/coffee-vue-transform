@@ -58,7 +58,7 @@ module.exports = class Parser
     @parseTree # return completed parseTree
 
   # lex/parse states
-  
+
   # Matches and consumes comments.
   csComment: ->
     return 0 unless match = @chunk.match COMMENT
@@ -164,7 +164,7 @@ module.exports = class Parser
 
     return 0 unless match = TAG_ATTRIBUTES.exec @chunk
     [ input, attrName, doubleQuotedVal,
-      singleQuotedVal, cjsxEscVal, bareVal, 
+      singleQuotedVal, cjsxEscVal, bareVal,
       spreadAttr, whitespace ] = match
 
     if attrName
@@ -262,7 +262,7 @@ module.exports = class Parser
   # fallthrough
   coffeescriptCode: ->
     # return 0 unless @currentState() is $.ROOT or @currentState() is $.CJSX_ESC
-    
+
     if @currentState() is $.CJSX_ESC
       if @chunk.charAt(0) is '{'
         @activeBranchNode().stack++
@@ -270,13 +270,13 @@ module.exports = class Parser
         @activeBranchNode().stack--
         if @activeBranchNode().stack is 0
           return 0
-    
+
     unless @newestNode().type is $.CS
       @addLeafNodeToActiveBranch ParseTreeLeafNode $.CS, '' # init value as string
 
     # newestNode is (now) $.CS
     @newestNode().value += @chunk.charAt 0
-    
+
     return 1
 
   # parseTree helpers
@@ -299,7 +299,7 @@ module.exports = class Parser
     @activeBranchNode().children.push(node)
 
   # helpers (from cs lexer)
-  
+
   # Preprocess the code to remove leading and trailing whitespace, carriage
   # returns, etc.
   clean: (code) ->
@@ -382,10 +382,10 @@ OPENING_TAG = /// ^
                   | (?:'[^']*') # single quoted value
                   | (?:{[\s\S]*?}) # cjsx escaped expression
                   | [^>\s]+ # bare value
-                ) 
+                )
               )
             )
-          | \s+[\w-]+  # bare attribute 
+          | \s+[\w-]+  # bare attribute
           | \s+\{\.\.\.\s*?[^{}]+?\s*?\}  # spread attribute
         )?
       )*?

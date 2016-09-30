@@ -4,11 +4,11 @@ var hex = '0123456789abcdef'.split('');
 module.exports  =  function stringEncode(input, opts) {
   opts = opts || {};
   var escaped = "";
-  
+
   for (var i = 0; i < input.length; i++) {
     escaped = escaped + encodeChar(input.charAt(i), opts.preserveNewlines);
   }
-  
+
   return escaped;
 }
 
