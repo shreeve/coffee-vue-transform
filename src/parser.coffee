@@ -144,7 +144,7 @@ module.exports = class Parser
         return 2
       else
         throwSyntaxError \
-          "/ without immediately following > in CJSX tag #{@peekActiveState(2).value}",
+          "/ without immediately following > in coffeescript JSX tag #{@peekActiveState(2).value}",
           first_line: @chunkLine, first_column: @chunkColumn
 
     if @chunk.charAt(0) is '>'
@@ -194,7 +194,7 @@ module.exports = class Parser
       return input.length
     else
       throwSyntaxError \
-        "Invalid attribute #{input} in CJSX tag #{@peekActiveState(2).value}",
+        "Invalid attribute #{input} in coffeescript JSX tag #{@peekActiveState(2).value}",
         first_line: @chunkLine, first_column: @chunkColumn
 
   cjsxComment: ->
@@ -230,7 +230,7 @@ module.exports = class Parser
 
     unless tagName is @activeBranchNode().value
       throwSyntaxError \
-        "opening CJSX tag #{@activeBranchNode().value} doesn't match closing CJSX tag #{tagName}",
+        "opening coffeescript JSX tag #{@activeBranchNode().value} doesn't match closing tag #{tagName}",
         first_line: @chunkLine, first_column: @chunkColumn
 
     @popActiveBranchNode() # close cjsx tag
